@@ -49,7 +49,8 @@ Profesores:
   3) Realizar asistencia: El profesor seleccionará el nivel y la letra del curso. Esto abrirá un submenú con las 
      siguientes opciones:
 
-     1) Tomar asistencia: El profesor ingresará la fecha (DD/MM/AAAA) y la hora (HH), y luego deberá registrar la         asistencia de cada estudiante, marcándolos como presente, ausente, falta extraordinaria o retiro 
+     1) Tomar asistencia: El profesor ingresará la fecha (DD/MM/AAAA) y la hora (00:00), y luego deberá registrar 
+        la asistencia de cada estudiante, marcándolos como presente, ausente, falta extraordinaria o retiro 
         anticipado. También tendrá la opción de cancelar la toma de asistencia.
 
      2) Buscar asistencia: El profesor ingresará la fecha y hora de una toma de asistencia previa, y el sistema   
