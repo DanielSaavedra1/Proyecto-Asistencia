@@ -23,7 +23,7 @@ Administrador:
         programa indicará si el curso está registrado.
 
 
-     3) Eliminar curso: El administrador ingresará el nivel y la letra del curso que desea eliminar. El sistema 
+     3)Eliminar curso: El administrador ingresará el nivel y la letra del curso que desea eliminar. El sistema 
          confirmará si el curso fue eliminado con éxito o si no se encuentra en el registro.
 
      4)Regresar al menú principal: Esta opción regresa al menú principal.
