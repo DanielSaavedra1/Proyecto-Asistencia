@@ -47,7 +47,70 @@ public class Colegio{
         Estudiante eCuartoMA = new Estudiante("Daniel","Savedra","Erazo","212194026");
         Estudiante eCuartoMA2 = new Estudiante("Matías","Diaz","Castro","220380025");
         cursos.add(cuartoMA);
+        cursos.get(11).agregarEstudiante("212194026",eCuartoMA);
+        cursos.get(11).agregarEstudiante(eCuartoMA);
+        cursos.get(11).agregarEstudiante("220380025",eCuartoMA2);
+        cursos.get(11).agregarEstudiante(eCuartoMA2);
     }
 
+    public boolean cursoEstaVacio(){
+        return cursos.isEmpty();
+    }
+    public boolean removerCurso(Curso c){
+        return cursos.remove(c);
+    }
+    
+    public Curso verificarCurso(Curso c){
+        int i;
+        if (c==null){
+            return null;
+        }
+        for (i=0;cursos.size()>i;i++){
+            if (c.getGrado()!=null && c.getLetra()!=null){
+                if(cursos.get(i).getGrado().equals(c.getGrado()) && cursos.get(i).getLetra().equals(c.getLetra())){
+                    return cursos.get(i);
+                }
+            }
+
+        }
+        cursos.add(c);
+        return null;
+    }
+    public void mostrarCurso(){
+        int i;
+        System.out.println("Estos son los cursos registrados :");
+        System.out.println("=============================================");
+        System.out.println(" ");
+        for (i=0;cursos.size()>i;i++){
+            System.out.println("=============================================");
+            System.out.println("Informacion de clase :\nGrado: "+cursos.get(i).getGrado()+"\nParalelo: "+cursos.get(i).getLetra());
+            System.out.println("Cantidad de estudiantes : "+cursos.get(i).sizeCurso());
+            System.out.println("=============================================");
+            System.out.println(" ");
+        }
+        System.out.println("=============================================");
+    }
+    public void mostrarCurso(Curso c){
+        int i;
+        for (i=0;cursos.size()>i;i++){
+            if (cursos.get(i).getGrado().equals(c.getGrado()) && cursos.get(i).getLetra().equals(c.getLetra())){
+                System.out.println("\n=============================================");
+                System.out.println("Informacion de clase :\nGrado: "+cursos.get(i).getGrado()+"\nParalelo: "+cursos.get(i).getLetra());
+                System.out.println("Cantidad de estudiantes : "+cursos.get(i).sizeCurso());
+                System.out.println("=============================================\n");
+                return;
+            }
+        }
+    }
+    public boolean verificarEstudiante(String rut){
+        int i;
+        for(i=0;cursos.size()>i;i++){
+            if(cursos.get(i).contieneEstudiante(rut)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
 }
