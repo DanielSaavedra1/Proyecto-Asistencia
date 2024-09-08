@@ -4,7 +4,8 @@
 
 Este programa esta centrado principalmente en el registro de los diferentes casos de asistencia en los distintos cursos, asegurando que la asistencia de un curso no afecte a los demás y que ningún estudiante esté duplicado, ya sea en el mismo o en diferentes cursos.
 
-##Instrucciones de ejecución del programa.
+## Instrucciones de ejecución del programa.
+
 
 Al iniciar el programa, se mostrará un menú con varias opciones dirigidas tanto a los profesores como a los administradores. Los profesores podrán registrar la asistencia de cualquier curso previamente creado y que cuente con al menos un estudiante inscrito. Los administradores, por su parte, tendrán la posibilidad de crear nuevos cursos y registrar nuevos estudiantes. Para utilizar el sistema, solo es necesario ingresar el número correspondiente a la opción deseada.
 
@@ -15,17 +16,17 @@ Administrador:
 
   1) Menú de cursos: Este submenú contiene las siguientes opciones:
 
-       1)Agregar curso: El administrador deberá asignar el nivel y la letra del curso (paralelo) en el formato:   
+     1)Agregar curso: El administrador deberá asignar el nivel y la letra del curso (paralelo) en el formato:   
        nivel (ej. "1ro Básico", "4to Medio") y letra (ej. "A") en mayúscula.
      
-       2)Buscar curso: El administrador deberá ingresar el nivel y la letra del curso que desea buscar. El   
+     2)Buscar curso: El administrador deberá ingresar el nivel y la letra del curso que desea buscar. El   
         programa indicará si el curso está registrado.
 
 
-       3) Eliminar curso: El administrador ingresará el nivel y la letra del curso que desea eliminar. El sistema 
+     3) Eliminar curso: El administrador ingresará el nivel y la letra del curso que desea eliminar. El sistema 
          confirmará si el curso fue eliminado con éxito o si no se encuentra en el registro.
 
-       4)Regresar al menú principal: Esta opción regresa al menú principal.
+     4)Regresar al menú principal: Esta opción regresa al menú principal.
 
   2) Menú de estudiantes:
 
