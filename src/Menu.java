@@ -61,9 +61,29 @@ public class Menu {
                     }
                     break;
                 case 3:
-                    //Asistencia
+                    if (!colegio.cursoEstaVacio()){
+                        colegio.mostrarCurso();
+                        System.out.println("Ingresar grado de curso para añadir estudiantes");
+                        grado = scanf.readLine();
+                        System.out.println("Ingresar el paralelo o letra de curso para añadir estudiantes");
+                        letra = scanf.readLine();
+                        c = new Curso(grado,letra);
+                        c = colegio.verificarCurso(c);
+                        if (c!=null){
+                            if(!c.estaCursoVacio()){
+                                asistencia(c);
+                            }
+                        }
+                        else{
+                            System.out.println("Curso no valido para pasar asistencia");
+                        }
+                    }
+                    else{
+                        System.out.println("No hay cursos para poder pasar asistencia");
+
+                    }
+
                     break;
-                    
                 case 4:
                     System.out.println("Saliendo del programa...");
                     break;
@@ -238,5 +258,122 @@ public class Menu {
         }while(opcion!=4);
     }
 
-    
+    public void asistencia(Curso c)throws IOException{
+        int opcion;
+        String fecha,hora,input;
+        Asistencia asist;
+        do{
+            System.out.println("\n\n=============================================");
+            System.out.println("Curso : "+c.getGrado()+"-"+c.getLetra());
+            System.out.println("Cantidad de estudiantes : "+c.sizeCurso());
+            System.out.println("=============================================\n");
+            System.out.println("(1) Realizar asistencia");
+            System.out.println("(2) Buscar asistencia");
+            System.out.println("(3) Eliminar registro de asistencia");
+            System.out.println("(4) Regresar al menu principal");
+            System.out.print("Elija su opción");
+            input = scanf.readLine();
+
+            if(isNumeric(input)){
+                opcion = Integer.parseInt(input);
+            }
+            else{
+                System.out.println("\n\nValor no valido");
+                opcion = 5;
+            }
+            switch (opcion){
+                case 1:
+                    //hacer asistencia
+                    System.out.println("Ingrese fecha de paso de la asistencia formato DD/MM/AAAA :");
+                    fecha = scanf.readLine();
+                    if ((fecha.length() != 10) && ((fecha.charAt(2))!='/'&&(fecha.charAt(5))!='/')){
+                        System.out.println("Formato no valido, intente otra vez");
+                        break;
+                    }
+                    System.out.println("Ingrese hora de paso de la asistencia formato 24hrs (ej: 16:30):");
+                    hora = scanf.readLine();
+                    if (hora.charAt(2)!=':') {
+                        System.out.println("Formato no valido, intente otra vez");
+                        break;
+                    }
+                    asist = new Asistencia(fecha,hora,c);
+                    if(colegio.verificarAsistencia(asist)!=null){
+                        System.out.println("Asistencia ya tomada");
+                        break;
+                    }
+                    if(asist.pasaAsistencia(c,asist)){
+                        colegio.agregarAsistencia(asist);
+                        System.out.println("Asistencia hecha con exito");
+                    }
+
+                    else{
+                        System.out.println("\n\nCancelando pase de asistencia...");
+                    }
+                    break;
+                case 2:
+                    if(colegio.asistenciaEstaVacio()){
+                        System.out.println("No hay ninguna asistencia registrada en el sistema");
+                    }
+                    else{
+                        System.out.println("Ingrese fecha de la asistencia formato DD/MM/AAAA para buscar:");
+                        fecha = scanf.readLine();
+                        if ((fecha.length() != 10) && ((fecha.charAt(2))!='/'&&(fecha.charAt(5))!='/')){
+                            System.out.println("Formato no valido, intente otra vez");
+                            break;
+                        }
+                        System.out.println("Ingrese hora de la asistencia formato 24hrs (ej: 16:30) para buscar:");
+                        hora = scanf.readLine();
+                        if (hora.charAt(2)!=':') {
+                            System.out.println("Formato no valido, intente otra vez");
+                            break;
+                        }
+                        asist = new Asistencia(fecha,hora,c);
+                        asist = colegio.verificarAsistencia(asist);
+                        if (asist == null){
+                            System.out.println("Asistencia no registrada en el sistema");
+                            break;
+                        }
+                        else{
+                            colegio.mostrarAsistencia(asist);
+                        }
+                    }
+                    break;
+                case 3:
+                    //eliminar registro de un loquito
+                    if(colegio.asistenciaEstaVacio()){
+                        System.out.println("No hay asistencia registrada en este curso");
+                        break;
+                    }
+                    System.out.println("Ingrese fecha de la asistencia formato DD/MM/AAAA para eliminar:");
+                    fecha = scanf.readLine();
+                    if ((fecha.length() != 10) && ((fecha.charAt(2))!='/'&&(fecha.charAt(5))!='/')){
+                        System.out.println("Formato no valido, intente otra vez");
+                        break;
+                    }
+                    System.out.println("Ingrese hora de la asistencia formato 24hrs (ej: 16:30) para eliminar:");
+                    hora = scanf.readLine();
+                    if (hora.charAt(2)!=':') {
+                        System.out.println("Formato no valido, intente otra vez");
+                        break;
+                    }
+                    asist = new Asistencia(fecha,hora,c);
+                    asist = colegio.verificarAsistencia(asist);
+                    if (asist==null){
+                        System.out.println("Asistencia no registrada en el sistema");
+                    }
+                    else{
+                        colegio.removerAsistencia(asist);
+                        System.out.println("Registro de asistencia eliminada con exito");
+                    }
+                    break;
+                case 4:
+                    //salir
+                    System.out.println("Regresando a menu principal...");
+                    break;
+                default:
+                    System.out.println("Ingrese un numero valido");
+                    break;
+            }
+        }while(opcion!=4);
+    }
 }

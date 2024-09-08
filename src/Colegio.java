@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Colegio{
     private  ArrayList<Curso> cursos;
-    
+    private ArrayList <Asistencia> asistencias;
 
     public Colegio() {
         this.cursos = new ArrayList<>();
-        
+        this.asistencias = new ArrayList<>();
         listarCurso();
     }
     public void listarCurso(){
@@ -56,10 +56,18 @@ public class Colegio{
     public boolean cursoEstaVacio(){
         return cursos.isEmpty();
     }
+    public boolean asistenciaEstaVacio(){
+        return asistencias.isEmpty();
+    }
     public boolean removerCurso(Curso c){
         return cursos.remove(c);
     }
-    
+    public void removerAsistencia(Asistencia a){
+        asistencias.remove(a);
+    }
+    public void agregarAsistencia(Asistencia a){
+        asistencias.add(a);
+    }
     public Curso verificarCurso(Curso c){
         int i;
         if (c==null){
@@ -111,6 +119,39 @@ public class Colegio{
         }
         return false;
     }
-    
+    public Asistencia verificarAsistencia(Asistencia a){
+        int i;
+        for (i=0;asistencias.size()>i;i++){
+            if(asistencias.get(i).getFecha().equals(a.getFecha())&&asistencias.get(i).getHora().equals(a.getHora())){
+                if (asistencias.get(i).getCurso().getGrado().equals(a.getCurso().getGrado()) && asistencias.get(i).getCurso().getLetra().equals(a.getCurso().getLetra())) {
+                    return asistencias.get(i);
+                }
+            }
+        }
+        return null;
+    }
+    public void mostrarAsistencia(Asistencia asist){
+        int i;
+        Estudiante alumno;
+        for (i=0;asist.getCurso().sizeCurso()>i;i++){
+            alumno = asist.getEstudiante(i);
+            System.out.println("======================================================================");
+            System.out.println(alumno.toString());
+            if(alumno.isAsistencia() && !alumno.isInasistenciaJust()){
+                System.out.println("Presente el dia : "+asist.getFecha()+" hora: "+asist.getHora());
+            }
+            else if(!alumno.isAsistencia() && !alumno.isInasistenciaJust()){
+                System.out.println("Falta el dia : "+asist.getFecha()+" hora: "+asist.getHora());
+            }
+            else if(!alumno.isAsistencia() && alumno.isInasistenciaJust()){
+                System.out.println("Falta extraordinaria el dia : "+asist.getFecha()+" hora: "+asist.getHora());
+            }
+            else if(alumno.isAsistencia() && alumno.isInasistenciaJust()){
+                System.out.println("Sale antes del horario el dia : "+asist.getFecha()+" hora: "+asist.getHora());
+            }
+            System.out.println("======================================================================");
+        }
+        System.out.println("Cantidad de presentes : "+asist.getCantidadAsist()+" de un total de "+asist.getCurso().sizeCurso());
+    }
 
 }
